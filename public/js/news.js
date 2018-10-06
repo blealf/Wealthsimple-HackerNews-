@@ -199,20 +199,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         post_image = document.createElement('img');
         // post_image.src = '../images/carriers.jpg';
-
-        
-
-        axios.get(data.url)
-            .then((response) => {
-                // console.log(response.data);
-                var doc = new DOMParser().parseFromString(response.data, 'text/html');
-                var meta = doc.querySelector('meta[property="og:image"]');
-                // var value = meta && meta.getAttribute('content');
-                var value = meta.getAttribute('content');
-                post_image.src = value;
-                console.log(value);
-            })
-            .catch(error => console.log(error));
         // post_image.src = result.data.url.document.getElementsByTagName('img')[0].src;
 
         var content_wrapper = document.createElement('div');
@@ -228,8 +214,31 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
         var post_content = document.createElement('p');
         // post_content.innerHTML = result.data.text;
-        post_content.appendChild(document.createTextNode(data.text));
+        // post_content.appendChild(document.createTextNode(data.text));
         post_content.classList.add('content');
+
+
+
+        axios.get(data.url)
+            .then((response) => {
+                // console.log(response.data);
+                var doc = new DOMParser().parseFromString(response.data, 'text/html');
+                var meta = doc.querySelector('meta[property="og:image"]');
+                var meta2 = doc.getElementsByTagName('img')[0];
+                // var value = meta && meta.getAttribute('content');
+                var value = meta.getAttribute('content');
+                var value2 = meta2.getAttribute('src');
+
+                var use_attribute = value || value2;
+                post_image.src = use_attribute;
+
+
+                var text = doc.querySelector('meta[property="og:description"]').getAttribute('content');
+                var use_text = text || document.createTextNode(data.text);
+                post_content.innerHTML = text;
+                console.log(value);
+            })
+            .catch(error => console.log(error));
 
         // post_content.innerHTML = getDescription(data.url);
         // post_content.classList.add('content');
@@ -237,7 +246,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         post_link_wrapper.appendChild(post_image);
         post_link_wrapper.appendChild(post_wrapper);        
         post_wrapper.appendChild(content_wrapper);
-        content_wrapper.appendChild(post_category);
+        // content_wrapper.appendChild(post_category);
         content_wrapper.appendChild(post_title);
         content_wrapper.appendChild(post_content);
 
