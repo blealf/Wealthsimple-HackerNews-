@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HackerNews (Wealthsimple Magazine Clone)</title>
+  <link rel="stylesheet" href="css/news_mobile.css">
+  <link rel="stylesheet" href="css/news.css">
+  <link href="https://fonts.googleapis.com/css?family=Hind" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Courgette" rel="stylesheet">
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+</head>
+<body>
+    <nav class="nav_wrapper">
+      <div id="brand_wrapper">
+        <h2 id="brand">HackerNews</h2>
+      </div>
+      <div id="brand_mobile_wrapper">
+        <h2 id="brand_mobile">H</h2>
+      </div>
+      
+      <ul id="links">
+        <li class="link"><a href="#" class="active">Link1</a></li>
+        <li class="link"><a href="#">Link1</a></li>
+        <li class="link"><a href="#">Link1</a></li>
+        <li class="link special"><a href="#">Link1</a></li>
+      </ul>
+
+      <div id="menu">
+        <button id="menu_button"><i class="fas fa-bars"></i></button>
+      </div>
+    </nav>
+
+  <div id="mobile_links_wrapper">
+    <div id="menu_close_wrapper">
+      <button id="menu_close"><i class="fas fa-times"></i></button>
+    </div>
+    <ul id="mobile_links">
+      <a href="#"><li class="link">Link1</li></a>
+      <a href="#"><li class="link">Link1</li></a>
+      <a href="#"><li class="link">Link1</li></a>
+      <a href="#"><li class="link">Link1</li></a>
+    </ul>
+  </div>
+
+  <div class="news_section">
+    <header>
+      <h3>YCombinator</h3>
+      <h1>HackerNews</h1>
+      <p>  News form the HackerNews API</p>
+    </header>
+    <nav id="second_nav">
+      <ul id="second_nav_links">
+        <li class="link" ><a href="?posts=even" id="even">Even Numbered Articles</a></li>
+        <li class="link" ><a href="?posts=odd" id="odd">Odd Numbered Articles</a></li>
+    
+      </ul>
+    </nav>
+    <section class="first_news">
+      <!-- <a href="#">
+        <img src="carriers.jpg" alt="news_image">
+        <div class="first_news_content">
+          <p class="content_category">MONEY DIARIES</p>
+          <h3 class="content_title">Natasha Rothwell Plays an Accountant on ‘Insecure.’ Her Real Life Wasn’t So Excel-Ready.</h3>
+          <p class="content">A Money Diary about subsidized housing, writing for ‘Saturday Night Live,’ and getting into credit card debt from the actress (‘Love, Simon’) and writer.</p>
+        </div>
+      </a> -->
+    </section>
+
+    <section class="all_news">
+      <!-- <a href="#">
+        <div>
+          <img src="carriers.jpg" alt="news_image">
+          <div class="news_content">
+            <p class="content_category">MONEY DIARIES</p>
+            <h3 class="content_title">Natasha Rothwell Plays an Accountant on ‘Insecure.’ Her Real Life Wasn’t So
+              Excel-Ready.</h3>
+            <p class="content">A Money Diary about subsidized housing, writing for ‘Saturday Night Live,’ and getting into
+              credit card debt from the actress (‘Love, Simon’) and writer.</p>
+          </div>
+        </div>
+      </a>
+
+      <a href="#">
+        <div>
+          <img src="carriers.jpg" alt="news_image">
+          <div class="news_content">
+            <p class="content_category">MONEY DIARIES</p>
+            <h3 class="content_title">Natasha Rothwell Plays an Accountant on ‘Insecure.’ Her Real Life Wasn’t So Excel-Ready.</h3>
+            <p class="content">A Money Diary about subsidized housing, writing for ‘Saturday Night Live,’ and getting into
+              credit card debt from the actress (‘Love, Simon’) and writer.</p>
+            </div>
+          </div>
+        </a> -->
+    </section>
+
+    <section class="retrieving_news">
+      <div class="loader"></div>
+      <button id="load_more">Loading More...</button>      
+    </section>
+  </div>
+    
+
+  <script src="js/news.js"></script>
+</body>
+</html>
