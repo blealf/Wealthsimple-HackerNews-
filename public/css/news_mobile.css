@@ -5,7 +5,7 @@ body {
 
 .nav_wrapper{
   background: #FFFFFF;
-  /* background: red; */
+  background: red;
   height: 50px;
   width: 100%;
   position: fixed;
@@ -13,8 +13,11 @@ body {
   margin: -108px 0px 0px -8px;
   display: grid;
   grid-template-columns: 1fr 4fr;
-  z-index: 2;
+  z-index: 3;
+  
 }
+
+
 
 #brand_wrapper {
   display: none;
@@ -150,8 +153,11 @@ a .active {
   #second_nav {
     display: none;
   }
+
+  
 .news_section {
   margin-top: 100px;
+  padding-top: 100px;
 }
 
 .first_news, .all_news {
@@ -186,6 +192,7 @@ a .active {
 .retrieving_news {
   margin: 0 auto;
   width: 150px;
+  padding-top: 30px;
 }
 
 #load_more {
