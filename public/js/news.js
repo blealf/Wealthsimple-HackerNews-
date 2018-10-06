@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
                     .then((result) => {
                         renderView(result.data);
-                        console.log(result.data.url);
+                        // console.log(result.data.url);
                     })
                     .catch(error => console.log(error));
             }
@@ -161,9 +161,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function renderFirstView(data){
         var post_link_wrapper = document.createElement('a');
         post_link_wrapper.setAttribute('href', data.url);
-        var post_wrapper = document.createElement('div');
 
         post_image = document.createElement('img');
+        post_image.src = '../images/carriers.jpg';
         // post_image.src = result.data.url.document.getElementsByTagName('img')[0].src;
 
         var content_wrapper = document.createElement('div');
@@ -182,20 +182,37 @@ document.addEventListener("DOMContentLoaded", function (event) {
         post_content.appendChild(document.createTextNode(data.text));
         post_content.classList.add('content');
 
-        post_link_wrapper.appendChild(post_wrapper);
-        post_wrapper.appendChild(content_wrapper);
+        post_link_wrapper.appendChild(post_image);
+        post_link_wrapper.appendChild(content_wrapper);
         content_wrapper.appendChild(post_category);
         content_wrapper.appendChild(post_title);
         content_wrapper.appendChild(post_content);
 
-         first_news.appendChild(post_link_wrapper);
+        first_news.appendChild(post_link_wrapper);
     }
+
     function renderView(data){
         var post_link_wrapper = document.createElement('a');
         post_link_wrapper.setAttribute('href', data.url);
         var post_wrapper = document.createElement('div');
+        console.log(data.url);
 
         post_image = document.createElement('img');
+        // post_image.src = '../images/carriers.jpg';
+
+        
+
+        axios.get(data.url)
+            .then((response) => {
+                // console.log(response.data);
+                var doc = new DOMParser().parseFromString(response.data, 'text/html');
+                var meta = doc.querySelector('meta[property="og:image"]');
+                // var value = meta && meta.getAttribute('content');
+                var value = meta.getAttribute('content');
+                post_image.src = value;
+                console.log(value);
+            })
+            .catch(error => console.log(error));
         // post_image.src = result.data.url.document.getElementsByTagName('img')[0].src;
 
         var content_wrapper = document.createElement('div');
@@ -217,7 +234,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
         // post_content.innerHTML = getDescription(data.url);
         // post_content.classList.add('content');
 
-        post_link_wrapper.appendChild(post_wrapper);
+        post_link_wrapper.appendChild(post_image);
+        post_link_wrapper.appendChild(post_wrapper);        
         post_wrapper.appendChild(content_wrapper);
         content_wrapper.appendChild(post_category);
         content_wrapper.appendChild(post_title);
@@ -250,19 +268,36 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     
     // https://github.com/cyu/rack-cors/issues/26
-    // axios.get('http://changelog.complete.org/archives/9938-the-python-unicode-mess')
-    // .then((response) => {
-    //     console.log(response);
+
+
+
+        
+
+    
+
+
+
+    // console.log(getSourceAsDOM("https://www.janestreet.com/tech-talks/effective-programming/"));
+
+    // function getSourceAsDOM(url) {
+    //     xmlhttp = new XMLHttpRequest();
+    //     xmlhttp.onload(() => {
+    //         console.log(xmlhttp.responseText);
+    //     })
+    //     xmlhttp.open("GET", url, true);
+    //     xmlhttp.send();
+    //     parser = new DOMParser();
+    //     return parser.parseFromString(xmlhttp.responseText, "text/html");
+    // }
+
+
+
+    // xmlhttp = new XMLHttpRequest();
+    // xmlhttp.onload(() => {
+    //     console.log(xmlhttp.responseText);
     // })
-    // .catch(error => console.log(error));
+    // xmlhttp.open("GET", 'https://www.janestreet.com/tech-talks/effective-programming/', true);
+    // xmlhttp.send();
 
-    getSourceAsDOM("https://google.com");
-
-    function getSourceAsDOM(url) {
-        xmlhttp = new XMLHttpRequest();
-        xmlhttp.open("GET", url, true);
-        xmlhttp.send();
-        parser = new DOMParser();
-        return parser.parseFromString(xmlhttp.responseText, "text/html");
-    }
+    
 });

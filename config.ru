@@ -1,5 +1,5 @@
 use Rack::Static,
-  :urls => ["/js", "/css"],
+  :urls => ["/js", "/css", "/images"],
   :root => "public"
 
 run lambda { |env|
@@ -19,6 +19,12 @@ run lambda { |env|
 require 'rack'
 require 'rack/cors'
 
+
+  # headers['Access-Control-Allow-Origin'] = '*'
+  # headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+  # headers['Access-Control-Request-Method'] = '*'
+  # headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+
 use Rack::Cors do
   #   allow do
   #   origins 'localhost:9292', '127.0.0.1:9292',
@@ -33,6 +39,7 @@ use Rack::Cors do
   #       max_age: 600
   #       # headers to expose
   # end
+  
 
   allow do
     origins '*'
