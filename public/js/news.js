@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                     axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
                         .then((result) => {
                             renderFirstView(result.data);
+                            
                         })
                         .catch(error => console.log(error));
                     console.log(i);
@@ -105,6 +106,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
                     .then((result) => {
                         renderView(result.data);
+                        console.log(result.data.url);
                     })
                     .catch(error => console.log(error));
             }
@@ -115,6 +117,16 @@ document.addEventListener("DOMContentLoaded", function (event) {
             start += 0;
             for (var i = start; i < length; i+=2) {
                 let element = data[i];
+
+                if (i == 0) {
+                    axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
+                        .then((result) => {
+                            renderFirstView(result.data);
+                        })
+                        .catch(error => console.log(error));
+                    console.log(i);
+                }
+
                 axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
                     .then((result) => {
                         renderView(result.data);
@@ -128,6 +140,15 @@ document.addEventListener("DOMContentLoaded", function (event) {
             start += 1
             for (var i = start; i < length; i+=2) {
                 let element = data[i];
+
+                if (i == 1) {
+                    axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
+                        .then((result) => {
+                            renderFirstView(result.data);
+                        })
+                        .catch(error => console.log(error));
+                    console.log(i);
+                }
                 axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
                     .then((result) => {
                         renderView(result.data);
@@ -193,6 +214,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
         post_content.appendChild(document.createTextNode(data.text));
         post_content.classList.add('content');
 
+        // post_content.innerHTML = getDescription(data.url);
+        // post_content.classList.add('content');
+
         post_link_wrapper.appendChild(post_wrapper);
         post_wrapper.appendChild(content_wrapper);
         content_wrapper.appendChild(post_category);
@@ -215,4 +239,30 @@ document.addEventListener("DOMContentLoaded", function (event) {
         );
     };
 
+
+
+    // axios.get('https://api.urlmeta.org/?url=http://changelog.complete.org/archives/9938-the-python-unicode-mess')
+    //     .then(response => {
+    //         console.log(response.data);
+    //         // console.log(typeof response);
+    //     })
+    //     .catch(error => console.log(error));
+
+    
+    // https://github.com/cyu/rack-cors/issues/26
+    // axios.get('http://changelog.complete.org/archives/9938-the-python-unicode-mess')
+    // .then((response) => {
+    //     console.log(response);
+    // })
+    // .catch(error => console.log(error));
+
+    getSourceAsDOM("https://google.com");
+
+    function getSourceAsDOM(url) {
+        xmlhttp = new XMLHttpRequest();
+        xmlhttp.open("GET", url, true);
+        xmlhttp.send();
+        parser = new DOMParser();
+        return parser.parseFromString(xmlhttp.responseText, "text/html");
+    }
 });
