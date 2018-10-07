@@ -112,6 +112,11 @@
     padding: 10px;
   }
 
+  .first_news img{
+    min-height: 500px;
+    background-color: #ef6d1673;
+  }
+
   .all_news {
     padding-top: 20px;
     display: grid;
