@@ -87,73 +87,58 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-    function get30(start, length, data){
+    // Choosing to load first article differently especially for desktop
+    function whichToRender(start, code, odd_even) {
+        if (start == 0) {
+            axios.get('https://hacker-news.firebaseio.com/v0/item/' + code + '.json?print=pretty')
+                .then((result) => {
+                    renderFirstView(result.data);
+                })
+                .catch(error => console.log(error));
+        } else if (start == 1 && odd_even) {
+            axios.get('https://hacker-news.firebaseio.com/v0/item/' + code + '.json?print=pretty')
+                .then((result) => {
+                    renderFirstView(result.data);
+                })
+                .catch(error => console.log(error));
+        }
+        else {
+            axios.get('https://hacker-news.firebaseio.com/v0/item/' + code + '.json?print=pretty')
+                .then((result) => {
+                    renderView(result.data);
+                })
+                .catch(error => console.log(error));
+        }
+    }
 
-        if (posts === "default"){
+    // Load more posts function
+    function get30(start, length, data) {
+        // default loading
+        if (posts === "default") {
             for (var i = start; i < length; i++) {
                 let element = data[i];
-
-                if (i == 0) {
-                    axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
-                        .then((result) => {
-                            renderFirstView(result.data);
-                            
-                        })
-                        .catch(error => console.log(error));
-                    console.log(i);
-                }
-                
-                axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
-                    .then((result) => {
-                        renderView(result.data);
-                        // console.log(result.data.url);
-                    })
-                    .catch(error => console.log(error));
+                whichToRender(i, element);
             }
         }
-        
-        if (posts === "even") {
-            length *= 2;
-            start += 0;
-            for (var i = start; i < length; i+=2) {
-                let element = data[i];
 
-                if (i == 0) {
-                    axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
-                        .then((result) => {
-                            renderFirstView(result.data);
-                        })
-                        .catch(error => console.log(error));
-                    console.log(i);
-                }
-
-                axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
-                    .then((result) => {
-                        renderView(result.data);
-                    })
-                    .catch(error => console.log(error));
-            }
-        }
-        
+        // Load even numbered posts
         if (posts === "odd") {
             length *= 2;
-            start += 1
-            for (var i = start; i < length; i+=2) {
+            start += 0;
+            for (var i = start; i < length; i += 2) {
                 let element = data[i];
+                whichToRender(i, element, "odd");
 
-                if (i == 1) {
-                    axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
-                        .then((result) => {
-                            renderFirstView(result.data);
-                        })
-                        .catch(error => console.log(error));
-                    console.log(i);
-                }
-                axios.get('https://hacker-news.firebaseio.com/v0/item/' + element + '.json?print=pretty')
-                    .then((result) => {
-                        renderView(result.data);
-                    })
-                    .catch(error => console.log(error));
+            }
+        }
+
+        // Load odd numbered posts
+        if (posts === "even") {
+            length *= 2;
+            start += 1
+            for (var i = start; i < length; i += 2) {
+                let element = data[i];
+                whichToRender(i, element, "even");
             }
         }
     }
