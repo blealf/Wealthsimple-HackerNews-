@@ -79,6 +79,10 @@
     position: relative;
   }
 
+  /* Header */
+    header p {
+    font-size: 1rem;
+  }
   /*Second navigation section Begins*/
   #second_nav {
     margin: 0 auto;

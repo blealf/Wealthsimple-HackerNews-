@@ -291,9 +291,9 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 // console.log(response.data);
                 var doc = new DOMParser().parseFromString(response.data, 'text/html');
                 var meta = doc.querySelector('meta[property="og:image"]');
-                var meta2 = doc.getElementsByTagName('img')[0];
-                // var value = meta && meta.getAttribute('content');
-                var value = meta.getAttribute('content');
+                var meta2 = doc.querySelectorAll('img')[0];
+                var value = meta && meta.getAttribute('content');
+                // var value = meta.getAttribute('content');
                 var value2 = meta2.getAttribute('src');
 
                 var use_attribute = value || value2;
