@@ -126,5 +126,28 @@
     grid-gap: 20px;
   }
 
+  /* SITE FOOTER */
+
+  .footer {
+    text-align: center;
+  }
+  .footer_contents_wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .footer_contents_wrapper_last li {
+    display: inline;
+    font-size: 1.1rem;
+    list-style: disc;
+  }
+
+  .footer_contents_wrapper_last span{
+    display: inline;
+    margin-right: 10px;
+    font-size: 0.9rem;
+    list-style: disc;
+    margin-left: 10px;
+  }
 
 }
