@@ -34,7 +34,11 @@ document.addEventListener("DOMContentLoaded", function (event) {
     // Close mobile navigation
     function closeMobileNav() {
         if (mobile_links.style.display === "block") {
-            mobile_links.style.display = "none";
+            mobile_links.className = 'menu_slide_out';
+            sleep(1000).then(() => {
+                mobile_links.style.display = "none";
+            })
+            
         }
     }
 
@@ -90,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
         );
     }
 
-    // Some random sleep function used in load more
+    // Some random sleep function used in determineLoadMore and closeMobileMenu
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
@@ -117,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
     // Loading the api
     function loadApi(){
-        axios.get('https://hacker-news.firebaseio.com/v0/beststories.json')
+        axios.get('https://hacker-news.firebaseio.com/v0/topstories.json')
             .then((response) => {
                 get30(start_point, response.data.length, response.data);
                 console.log(response.data);
@@ -177,7 +181,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 if (j == 30){
                     break;
                 }
-
             }
         }
 
@@ -194,12 +197,18 @@ document.addEventListener("DOMContentLoaded", function (event) {
                 }
             }
         }
+
+        // if (start_point >= length - 2) {
+        //     load_more.style.display = "none";
+        //     loader.style.display = "none";
+        // }
     }
 
     // Render the first news/post in  different style for desktop
     function renderFirstView(data){
         var post_link_wrapper = document.createElement('a');
         post_link_wrapper.setAttribute('href', data.url);
+        post_link_wrapper.setAttribute('target', '_blank');
 
         post_image = document.createElement('img');
         // post_image.src = '../images/carriers.jpg';
@@ -261,6 +270,7 @@ document.addEventListener("DOMContentLoaded", function (event) {
     function renderView(data){
         var post_link_wrapper = document.createElement('a');
         post_link_wrapper.setAttribute('href', data.url);
+        post_link_wrapper.setAttribute('target', '_blank');
         var post_wrapper = document.createElement('div');
         console.log(data.url);
 
@@ -322,7 +332,8 @@ document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-
+    // LOTS OF COMMENTED OUT CODE STARTS FROM HERE
+    ///////////////////////////////////////
 
     // function inView(el) {
     //     var scroll = window.scrollY || window.pageYOffset

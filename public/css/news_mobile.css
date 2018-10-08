@@ -3,6 +3,7 @@ body {
   font-family: 'Hind', sans-serif;
 }
 
+/* NAVIGATION SECTION BEGINS */
 .nav_wrapper{
   background: #FFFFFF;
   /* background: red; */
@@ -16,8 +17,6 @@ body {
   z-index: 3;
   
 }
-
-
 
 #brand_wrapper {
   display: none;
@@ -62,7 +61,6 @@ body {
   float:right;
   margin-right: 35px;
 }
-
 
 button:focus {
   outline: none;
@@ -111,22 +109,42 @@ button:focus {
 #menu_close {
   background: none;
   border: none;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: lighter;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   color: white;
   float:right;
-  padding:10px;
+  padding:10px 20px  0px 0px;
 }
 
-#mobile_links{
+@keyframes mobile_menu_close {
+  0% {left:0%}
+  100% {left:100%}
+}
+
+.menu_slide_out {
+  height: 100vh;
+  width: 100%;
+  margin: -100px 0px 0px -8px;
+  background: #FAB131;
+  z-index: 3;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  display: none;
+  animation-name: mobile_menu_close;
+  animation-duration: 1s;
+}
+
+#mobile_links, #app{
   clear: both;
   margin:0 auto;
   vertical-align: middle;
   padding-top: 20%;
 }
 
-#mobile_links a {
+#mobile_links a, #app, #app a {
   text-decoration: none;
   text-transform: uppercase;
   font-weight: bold;
@@ -134,7 +152,7 @@ button:focus {
   letter-spacing: 0.1rem;
 }
 
-#mobile_links .link {
+#mobile_links .link, #app .link {
   list-style: none;
   padding: 8px;
   text-align: center;
@@ -142,56 +160,67 @@ button:focus {
 }
 
 
+#app i {
+  font-size: 2rem;
+  font-weight: lighter;
+}
+
+#app a {
+  padding: 10px;
+}
+/* NAVIGATION SECTION ENDS */
+
 
 a .active {
   color: black;
 }
 
+
+
 /* NEWS SECTION */
-
-/* Header section begins */
-  header {
-    text-align: center;
-    padding-top: 20px;
-    color: #272C2F;
-    padding-bottom: 50px;
-  }
-
-  header h3 {
-    line-height: 5px;
-    font-size: 1.8rem;
-    margin-bottom: 0px;
-    font-weight: bolder;
-    letter-spacing: 0.1rem;
-  }
-
-  header h1 {
-    margin-top: 5px;
-    font-size: 3.2rem;
-    font-weight: bolder;
-  }
-
-  header p {
-    line-height: 2px;
-    margin-top: -40px;
-    font-size: 0.5rem;
-    letter-spacing: 0.2rem;
-    text-transform: uppercase;
-    color: #959594;
-  }
-  /*Header section Ends*/
-
-  /* Second_van section */
-  #second_nav {
-    display: none;
-  }
-
-  
 .news_section {
   margin-top: 100px;
   padding-top: 100px;
 }
 
+/* Header section begins */
+header {
+  text-align: center;
+  padding-top: 20px;
+  color: #272C2F;
+  padding-bottom: 50px;
+}
+
+header h3 {
+  line-height: 5px;
+  font-size: 1.8rem;
+  margin-bottom: 0px;
+  font-weight: bolder;
+  letter-spacing: 0.1rem;
+}
+
+header h1 {
+  margin-top: 5px;
+  font-size: 3.2rem;
+  font-weight: bolder;
+}
+
+header p {
+  line-height: 2px;
+  margin-top: -40px;
+  font-size: 0.5rem;
+  letter-spacing: 0.2rem;
+  text-transform: uppercase;
+  color: #959594;
+}
+/*Header section Ends*/
+
+/* Second_van section */
+#second_nav {
+  display: none;
+}
+
+/* News/Posts */  
 .first_news, .all_news {
   margin: 0 auto;
   max-width: 1200px;
@@ -226,10 +255,11 @@ a .active {
   padding: 5px;
 }
 
+/* Loading post animation and button */
 .retrieving_news {
   margin: 0 auto;
   width: 150px;
-  padding-top: 30px;
+  padding: 30p 0px 10px 0px;
 }
 
 #load_more {
